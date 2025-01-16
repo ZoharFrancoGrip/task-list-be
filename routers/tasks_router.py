@@ -1,7 +1,6 @@
 from typing import List
 
 from fastapi import APIRouter, HTTPException
-from regex import R
 from models.task import Task
 from dal.repositories.task_repository import TaskRepository
 
@@ -35,15 +34,15 @@ def create_task(task: Task):
 def update_task(updated_task: Task):
     updated = task_repository.update(updated_task)
     if updated:
-        raise HTTPException(status_code=204, detail="Task updated")
+        raise HTTPException(status_code=201, detail="Task updated")
     else:
         raise HTTPException(status_code=400, detail="Task not found")
 
 
-@router.delete("/task/delete/{task_id}", response_model=None)
+@router.post("/task/delete/{task_id}", response_model=None)
 def delete_task(task_id: int):
     deleted = task_repository.delete(task_id)
     if deleted:
-        raise HTTPException(status_code=204, detail="Task deleted")
+        raise HTTPException(status_code=201, detail="Task deleted")
     else:
         raise HTTPException(status_code=400, detail="Task not found")

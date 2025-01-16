@@ -37,4 +37,4 @@ class Task(BaseModel):
     status: TaskStatus
     type: TaskType
     difficulty: TaskDifficulty
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    createdAt: str

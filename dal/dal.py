@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from enum import Enum
 
 from pyparsing import C
@@ -8,6 +9,7 @@ from dal.repositories.repository import Repository
 
 
 
+@dataclass
 class RepositoryConfig:
     data_source: DataSource
     arguments: dict
@@ -21,9 +23,11 @@ REPOSITORIES_CONFIG = {
 
 class RepositoryFactory:
 
-    def get_repository(self, repository_type: Repository):
-        return self.build_repository_from_repository_config(repository_type, REPOSITORIES_CONFIG[repository_type])
+    @classmethod
+    def get_repository(cls, repository_type: Repository):
+        return cls.build_repository_from_repository_config(repository_type, REPOSITORIES_CONFIG[repository_type])
     
-    def build_repository_from_repository_config(self, repository_type: Repository, config: RepositoryConfig):
+    @staticmethod
+    def build_repository_from_repository_config(repository_type: Repository, config: RepositoryConfig):
         return repository_type(config.data_source(**config.arguments))
     
