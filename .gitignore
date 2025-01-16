@@ -3,6 +3,8 @@ package-lock.json
 *.pyo
 *.pyd
 poetry.lock
+.gitignore
+.venv
 
 
 
