@@ -1,0 +1,9 @@
+package-lock.json
+*.pyc
+*.pyo
+*.pyd
+poetry.lock
+.venv
+
+
+

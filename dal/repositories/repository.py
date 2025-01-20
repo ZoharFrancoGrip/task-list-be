@@ -13,10 +13,7 @@ class Repository(ABC):
     @abstractmethod
     def get_all(self) -> List[T]:
         raise NotImplementedError
-
-    @abstractmethod
-    def get_by_id(self, id: int) -> T:
-        raise NotImplementedError
+    
 
     @abstractmethod
     def create(self, item: T) -> T:
